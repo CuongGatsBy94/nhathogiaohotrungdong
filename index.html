@@ -1,0 +1,144 @@
+<!-- 
+  @Author: Cường GatsBy
+  @Date:   2024-11-03 00:37:12
+  @Last Modified by:   Your name
+  @Last Modified time: 2024-11-04 18:39:28
+-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giáo Họ Trung Đồng</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom CSS */
+        body { font-family: Arial, sans-serif; background-color: #f5f5f5; }
+        
+        .navbar-brand { font-weight: bold; }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('church-background.jpg') center/cover no-repeat;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero h1 { font-size: 2.5rem; text-transform: uppercase; letter-spacing: 2px; }
+        .hero p { font-size: 1.2rem; }
+        
+        .section { padding: 50px 0; }
+        .bg-light { background-color: #f9f9f9 !important; }
+        
+        .service-box {
+            padding: 30px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .service-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Giáo Họ Trung Đồng</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#about">Giới Thiệu</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">Hoạt Động</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Liên Hệ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Parallax Effect -->
+    <header class="hero">
+        <h1>Chào Mừng Đến Giáo Họ Trung Đồng</h1>
+        <p>Vinh danh Chúa, kết nối cộng đồng.</p>
+        <a href="#about" class="btn btn-primary btn-lg">Tìm Hiểu Thêm</a>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="section bg-light text-center">
+        <div class="container">
+            <h2>Giới Thiệu</h2>
+            <p>Giáo Họ Trung Đồng là một cộng đồng Công giáo với sứ mệnh kết nối và phụng sự Chúa.</p>
+        </div>
+    </section>
+
+    <!-- Services Section with Font Awesome Icons -->
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="text-center">Hoạt Động</h2>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="service-box">
+                        <i class="fas fa-church fa-3x mb-3"></i>
+                        <h4>Thánh Lễ</h4>
+                        <p>Các buổi thánh lễ hàng tuần để kết nối và cầu nguyện cùng nhau.</p>
+                        <ul>
+                            <li><a href="noidung/baigiangthang10.html">Bài giảng tháng 11</a></li>
+                            <li><a href="noidung/baigiangt11.html">Bài giảng tháng 10</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-box">
+                        <i class="fas fa-hands-helping fa-3x mb-3"></i>
+                        <h4>Các Chương Trình</h4>
+                        <p>Hoạt động xã hội và công tác thiện nguyện phục vụ cộng đồng.</p>
+                        <ul>
+                            <li><a href="#program1">Chương trình từ thiện 2024</a></li>
+                            <li><a href="#program2">Hoạt động giao lưu cộng đồng</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-box">
+                        <i class="fas fa-book-open fa-3x mb-3"></i>
+                        <h4>Các Lớp Học Giáo Lý</h4>
+                        <p>Giúp các thành viên học hỏi và phát triển đức tin.</p>
+                        <ul>
+                            <li><a href="noidung/lopgiaoly.html">Lớp học giáo lý trẻ em</a></li>
+                            <li><a href="noidung/lopgiaoly.html">Lớp học người lớn</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-light text-center">
+        <div class="container">
+            <h2>Liên Hệ</h2>
+            <p>Địa chỉ: Trung Đồng, Việt Nam<br>Email: info@giaohotrungdong.com</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <p>&copy; 2024 Giáo Họ Trung Đồng. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
