@@ -2,7 +2,7 @@
   @Author: Your name
   @Date:   2024-11-03 00:37:12
   @Last Modified by:   Your name
-  @Last Modified time: 2024-11-04 20:07:16
+  @Last Modified time: 2024-11-05 22:45:17
 -->
 <!DOCTYPE html>
 <html lang="vi">
@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giáo Họ Trung Đồng</title>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -53,6 +53,28 @@
             color: white;
             padding: 20px 0;
         }
+
+        /* Image Slider CSS */
+        .image-slider {
+            position: relative;
+            overflow: hidden;
+            height: 600px; /* Chiều cao của slider */
+        }
+        .slide-div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        .slide-div img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .active {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -83,6 +105,36 @@
         <div class="container">
             <h2>Giới Thiệu</h2>
             <p>Giáo Họ Trung Đồng là một cộng đồng Công giáo với sứ mệnh kết nối và phụng sự Chúa.</p>
+        </div>
+    </section>
+
+    <!-- Image Slider Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="text-center">Hình Ảnh Hoạt Động</h2>
+            <div class="image-slider">
+                <div class="slide-div active">
+                    <img src="images/1.jpg" alt="image1">
+                </div>
+                <div class="slide-div">
+                    <img src="images/2.jpg" alt="image2">
+                </div>
+                <div class="slide-div">
+                    <img src="images/9.jpg" alt="image3">
+                </div>
+                <div class="slide-div">
+                    <img src="images/4.jpg" alt="image4">
+                </div>
+                <div class="slide-div">
+                    <img src="images/6.jpg" alt="image5">
+                </div>
+                <div class="slide-div">
+                    <img src="images/7.jpg" alt="image6">
+                </div>
+                <div class="slide-div">
+                    <img src="images/8.jpg" alt="image7">
+                </div>
+            </div>
         </div>
     </section>
 
@@ -132,7 +184,7 @@
     <section id="contact" class="section bg-light text-center">
         <div class="container">
             <h2>Liên Hệ</h2>
-            <p>Địa chỉ: Trung Đồng, Việt Nam<br>Email: info@giaohotrungdong.com</p>
+            <p>Địa chỉ: Xóm 4 Xuân Phú Xuân Trường Nam Định<br>Email: nhathogiaohotrungdong@gmail.com</p>
         </div>
     </section>
 
@@ -144,5 +196,27 @@
     <!-- Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // JavaScript for Image Slider
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slide-div');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            showSlide(currentIndex);
+        }
+
+        setInterval(nextSlide, 3000); // Chuyển slide mỗi 3 giây
+    </script>
 </body>
 </html>

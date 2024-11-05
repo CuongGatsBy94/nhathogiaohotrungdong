@@ -1,3 +1,90 @@
+/**
+ * @Author: Your name
+ * @Date:   2024-11-03 00:43:24
+ * @Last Modified by:   Your name
+ * @Last Modified time: 2024-11-05 22:44:30
+ */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    display: grid;
+    height: 100%;
+    place-items: center;
+    overflow: hidden;
+    background: linear-gradient(to right, rgb(255, 65, 100), rgb(255, 75, 43));
+}
+
+.wrapper {
+    width: 80%;
+    /* Reduced size of wrapper */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-slider {
+    width: 100%;
+    height: 600px;
+    position: absolute;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.7s ease;
+}
+
+.slide-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 20px;
+}
+
+img {
+    position: relative;
+    width: 150px;
+    height: 220px;
+    /* Adjust height proportionally */
+    object-fit: cover;
+    /* Fit the image properly */
+    transition: 0.5s;
+    filter: saturate(10%);
+}
+
+.button {
+    position: absolute;
+    width: 150px;
+    height: 220px;
+    transition: 0.5s;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.button:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    img,
+    .button {
+        width: calc(150px * 0.7);
+        height: calc(220px * 0.7);
+    }
+}
+
+@media (max-width: 480px) {
+    img,
+    .button {
+        width: calc(150px * 0.5);
+        height: calc(220px * 0.5);
+    }
+}
+
 /* Modal Styles */
 .modal {
     display: none;
