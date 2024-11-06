@@ -1,0 +1,192 @@
+<!-- Bắt đầu tệp HTML/PHP -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giáo Họ Trung Đồng - Thêm Bài Viết và Bình Luận</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Custom CSS */
+        body { font-family: Arial, sans-serif; background-color: #f5f5f5; }
+        
+        .navbar-brand { font-weight: bold; }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.pexels.com/photos/6102365/pexels-photo-6102365.jpeg') center/cover no-repeat;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero h1 { font-size: 2.5rem; text-transform: uppercase; letter-spacing: 2px; }
+        .hero p { font-size: 1.2rem; }
+
+        .btn-home {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background-color: #007bff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .btn-home:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background-color: #0056b3;
+            text-decoration: none;
+        }
+        
+        .section { padding: 50px 0; }
+        .bg-light { background-color: #f9f9f9 !important; }
+
+        .post-form, .comment-form {
+            margin-bottom: 20px;
+        }
+        
+        .post, .comment {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Giáo Họ Trung Đồng</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#about">Giới Thiệu</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">Hoạt Động</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Liên Hệ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section with "Trở về Trang Chủ" Button -->
+    <header class="hero">
+        <h1>Chào Mừng Đến Giáo Họ Trung Đồng</h1>
+        <p>Vinh danh Chúa, kết nối cộng đồng.</p>
+        <!-- Nút Trở về Trang Chủ -->
+        <a href="/" class="btn-home">Trở về Trang Chủ</a>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="section bg-light text-center">
+        <div class="container">
+            <h2>Giới Thiệu</h2>
+            <p>Giáo Họ Trung Đồng là một cộng đồng Công giáo với sứ mệnh kết nối và phụng sự Chúa.</p>
+        </div>
+    </section>
+
+    <!-- Thêm Bài Viết và Bình Luận -->
+    <section class="section" id="post-section">
+        <div class="container">
+            <h2>Thêm Bài Viết và Bình Luận</h2>
+
+            <!-- Nút trở về trang chủ -->
+            <button onclick="window.location.href='index.html'" class="btn btn-secondary mb-3">Trở về trang chủ</button>
+
+            <!-- Form chỉ dành cho admin để thêm bài viết -->
+            <div class="post-form" id="admin-post-form">
+                <h3>Viết Bài Mới (Admin)</h3>
+                <input type="text" id="post-title" class="form-control mb-2" placeholder="Tiêu đề bài viết">
+                <textarea id="post-content" class="form-control mb-2" placeholder="Nội dung bài viết"></textarea>
+                <button onclick="addPost()" class="btn btn-primary">Đăng Bài Viết</button>
+            </div>
+
+            <!-- Danh sách bài viết -->
+            <div id="posts">
+                <?php
+                include 'db_connect.php';
+
+                // Truy vấn lấy tất cả các bài viết
+                $result = $conn->query("SELECT * FROM posts ORDER BY created_at DESC");
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<div class='post'>";
+                        echo "<h2>" . htmlspecialchars($row['title']) . "</h2>";
+                        echo "<p>" . nl2br(htmlspecialchars($row['content'])) . "</p>";
+                        if ($row['image']) {
+                            echo "<img src='" . htmlspecialchars($row['image']) . "' style='width:100%;max-width:600px'><br>";
+                        }
+                        echo "<small>Đăng vào: " . $row['created_at'] . "</small>";
+                        echo "</div><hr>";
+                    }
+                } else {
+                    echo "Chưa có bài viết nào.";
+                }
+
+                $conn->close();
+                ?>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const isAdmin = true; // Đặt là true để giữ quyền admin
+
+        // Ẩn form bài viết nếu không phải admin
+        if (!isAdmin) {
+            document.getElementById('admin-post-form').style.display = 'none';
+        }
+
+        // Thêm bài viết vào danh sách (chỉ admin có thể đăng bài)
+        function addPost() {
+            if (!isAdmin) {
+                alert("Chỉ admin mới có thể đăng bài.");
+                return;
+            }
+
+            const title = document.getElementById('post-title').value;
+            const content = document.getElementById('post-content').value;
+
+            if (title.trim() === '' || content.trim() === '') {
+                alert('Vui lòng điền đầy đủ tiêu đề và nội dung bài viết.');
+                return;
+            }
+
+            const postDiv = document.createElement('div');
+            postDiv.classList.add('post');
+
+            const postTitle = document.createElement('h3');
+            postTitle.textContent = title;
+            const postContent = document.createElement('p');
+            postContent.textContent = content;
+
+            postDiv.appendChild(postTitle);
+            postDiv.appendChild(postContent);
+
+            document.getElementById('posts').appendChild(postDiv);
+
+            document.getElementById('post-title').value = '';
+            document.getElementById('post-content').value = '';
+        }
+    </script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
