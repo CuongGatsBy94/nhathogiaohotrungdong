@@ -1,0 +1,8 @@
+[build]
+  functions = "netlify/functions"
+  publish = "yuuki"
+  edge_functions = "netlify/edge-functions"
+
+[dev]
+  port = 8888
+  targetPort = 8888

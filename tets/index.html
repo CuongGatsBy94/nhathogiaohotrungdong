@@ -1,0 +1,48 @@
+<!-- 
+  @Author: Your name
+  @Date:   2024-11-08 19:34:00
+  @Last Modified by:   Your name
+  @Last Modified time: 2024-11-08 20:22:52
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Giáo Họ Trung Đồng</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-16x16.png">
+</head>
+
+<body>
+    <div class="wrapper">
+        <h2>Đăng  Nhập</h2>
+        <form action="process_login.php" method="POST">
+            <div class="field email">
+                <div class="input-area">
+                    <input type="text" name="email" placeholder="Email Address" class="input-form" id="email" required>
+                    <i class="icon fas fa-envelope"></i>
+                    <i class="error error-icon fas fa-circle-exclamation"></i>
+                </div>
+                <p class="error error-txt">Email can't be blank</p>
+            </div>
+            <div class="field password">
+                <div class="input-area">
+                    <input type="password" name="password" placeholder="Password" class="input-form" id="password" required>
+                    <i class="icon fas fa-lock"></i>
+                    <i class="error error-icon fas fa-circle-exclamation"></i>
+                </div>
+                <p class="error error-txt">Password can't be blank</p>
+            </div>
+            <div class="pass-link"><a href="#">Forgot Password</a></div>
+            <input type="submit" value="Login">
+        </form>
+        <div class="signup-link">Don't have an account? <a href="register.html">Signup Now</a></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

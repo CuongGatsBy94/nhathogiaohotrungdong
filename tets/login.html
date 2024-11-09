@@ -1,0 +1,75 @@
+<!-- 
+  @Author: Your name
+  @Date:   2024-11-08 20:15:51
+  @Last Modified by:   Your name
+  @Last Modified time: 2024-11-09 00:10:11
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <div class="wrapper">
+        <h2>Đăng Nhập</h2>
+        <form id="login-form">
+            <div class="field email">
+                <div class="input-area">
+                    <input type="text" id="email" name="email" placeholder="Email Address" class="input-form" required>
+                    <i class="icon fas fa-envelope"></i>
+                </div>
+            </div>
+            <div class="field password">
+                <div class="input-area">
+                    <input type="password" id="password" name="password" placeholder="Password" class="input-form" required>
+                    <i class="icon fas fa-lock"></i>
+                </div>
+            </div>
+            
+            <!-- Thêm reCAPTCHA vào form -->
+            <div class="g-recaptcha" 
+                 data-sitekey="6LdV93gqAAAAAPhsQQ21c5Is3ApQaOVoUDbfSJrp" 
+                 data-callback="onSubmit" 
+                 data-action="submit"></div>
+            
+            <input type="submit" value="Login">
+        </form>
+        <div class="signup-link">Don't have an account? <a href="register.html">Signup Now</a></div>
+    </div>
+
+    <script>
+        function onSubmit(token) {
+            // Gửi yêu cầu đăng nhập tới API
+            document.getElementById("login-form").addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                try {
+                    const response = await fetch('/.netlify/functions/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ email, password }),
+                    });
+
+                    const data = await response.json();
+                    if (response.ok) {
+                        alert('Đăng nhập thành công!');
+                    } else {
+                        alert('Đăng nhập thất bại: ' + data.error);
+                    }
+                } catch (error) {
+                    alert('Có lỗi xảy ra: ' + error.message);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

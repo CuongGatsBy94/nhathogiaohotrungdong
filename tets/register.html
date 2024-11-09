@@ -1,0 +1,70 @@
+<!-- 
+  @Author: Cường GatsBy
+  @Date:   2024-11-08 19:36:09
+  @Last Modified by:   Your name
+  @Last Modified time: 2024-11-09 18:58:19
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giáo Họ Trung Đồng - Đăng Ký</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <h2>Đăng Ký</h2>
+        <form id="register-form">
+            <div class="field email">
+                <div class="input-area">
+                    <input type="email" id="email" name="email" placeholder="Email Address" class="input-form" required>
+                </div>
+            </div>
+            <div class="field password">
+                <div class="input-area">
+                    <input type="password" id="password" name="password" placeholder="Password" class="input-form" required>
+                </div>
+            </div>
+            <input type="submit" value="Register">
+        </form>
+        <div class="signup-link">Already have an account? <a href="login.html">Login Now</a></div>
+    </div>
+
+    <script>
+        // Xử lý sự kiện submit form
+        document.getElementById('register-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            
+            // Lấy giá trị từ các input
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                // Gửi yêu cầu tới API register.js
+                const response = await fetch('/.netlify/functions/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password,
+                    }),
+                });
+
+                // Xử lý kết quả trả về từ server
+                const data = await response.json();
+                if (response.ok) {
+                    alert('Đăng ký thành công!');
+                    window.location.href = 'login.html'; // Chuyển hướng đến trang login
+                } else {
+                    alert('Đăng ký thất bại: ' + data.error);
+                }
+            } catch (error) {
+                alert('Có lỗi xảy ra: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html>
