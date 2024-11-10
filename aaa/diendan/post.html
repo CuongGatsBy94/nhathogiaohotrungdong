@@ -1,0 +1,53 @@
+<!-- 
+  @Author: Your name
+  @Date:   2024-11-10 20:43:21
+  @Last Modified by:   Your name
+  @Last Modified time: 2024-11-10 20:43:26
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài Viết Chi Tiết</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container" id="post-detail">
+    <h2>Bài viết chi tiết</h2>
+    <div id="post-content"></div>
+  </div>
+
+  <script>
+    // Lấy ID bài viết từ URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('id');
+
+    // Lấy bài viết từ LocalStorage (hoặc từ API nếu có)
+    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+    const post = posts.find(p => p.id == postId);
+
+    if (post) {
+      const postContent = document.getElementById('post-content');
+      const postTitle = document.createElement('h3');
+      postTitle.textContent = post.title;
+      postContent.appendChild(postTitle);
+
+      if (post.imageUrl) {
+        const postImage = document.createElement('img');
+        postImage.src = post.imageUrl;
+        postContent.appendChild(postImage);
+      }
+
+      const contentText = document.createElement('p');
+      contentText.textContent = post.content;
+      postContent.appendChild(contentText);
+    } else {
+      document.getElementById('post-detail').innerHTML = '<p>Bài viết không tồn tại!</p>';
+    }
+  </script>
+</body>
+
+</html>

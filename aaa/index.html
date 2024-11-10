@@ -1,0 +1,66 @@
+<!-- 
+  @Author: Your name
+  @Date:   2024-11-10 19:57:24
+  @Last Modified by:   Your name
+  @Last Modified time: 2024-11-10 20:35:20
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Create Login Form | Html CSS</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="card login-size">
+      <!-- Login Form -->
+      <div class="login-form">
+        <h2>Login</h2>
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="login-email" placeholder="Email">
+        </div>
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="login-password" placeholder="Password">
+        </div>
+        <a href="#" class="forgot-password">Forgot Password?</a>
+        <button class="btn btn-login" onclick="login()">Login</button>
+        <p class="toggle-text">Don't have an account? <a href="#" class="toggle">Register Now</a></p>
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- Registration Form -->
+      <h2>Registration</h2>
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" id="first-name" placeholder="First Name">
+      </div>
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" id="last-name" placeholder="Last Name">
+      </div>
+      <div class="input-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" id="register-email" placeholder="Email">
+      </div>
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="register-password" placeholder="Password">
+      </div>
+      <button class="btn" onclick="register()">Register</button>
+      <p class="toggle-text">Already have an account? <a href="#" class="toggle">Login Now</a></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
