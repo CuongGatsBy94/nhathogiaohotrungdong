@@ -2,8 +2,10 @@
  * @Author: Your name
  * @Date:   2024-11-03 00:43:24
  * @Last Modified by:   Your name
- * @Last Modified time: 2024-11-05 22:44:30
+ * @Last Modified time: 2024-11-15 20:15:08
  */
+
+/* Đặt lại CSS cơ bản */
 * {
     padding: 0;
     margin: 0;
@@ -19,15 +21,16 @@ body {
     background: linear-gradient(to right, rgb(255, 65, 100), rgb(255, 75, 43));
 }
 
+/* Wrapper cho nội dung */
 .wrapper {
     width: 80%;
-    /* Reduced size of wrapper */
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* Slider ảnh */
 .image-slider {
     width: 100%;
     height: 600px;
@@ -50,9 +53,7 @@ img {
     position: relative;
     width: 150px;
     height: 220px;
-    /* Adjust height proportionally */
     object-fit: cover;
-    /* Fit the image properly */
     transition: 0.5s;
     filter: saturate(10%);
 }
@@ -69,6 +70,7 @@ img {
     background-color: rgba(0, 0, 0, 0.2);
 }
 
+/* Phản hồi cho thiết bị di động */
 @media (max-width: 768px) {
     img,
     .button {
@@ -85,7 +87,7 @@ img {
     }
 }
 
-/* Modal Styles */
+/* Phong cách cho Modal */
 .modal {
     display: none;
     position: fixed;
@@ -152,7 +154,7 @@ img {
     cursor: pointer;
 }
 
-/* Auth Buttons */
+/* Nút xác thực */
 .auth-buttons {
     display: flex;
     gap: 10px;
@@ -171,4 +173,32 @@ img {
 
 .auth-buttons button:hover {
     background-color: #555;
+}
+
+/* CSS cho icon mạng xã hội */
+.social-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-left: 15px;
+    margin-left: auto;
+}
+
+.social-icons .nav-link {
+    color: #fff; /* Màu icon */
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.social-icons .nav-link:hover {
+    color: #ff7e5f; /* Màu khi hover */
+}
+
+/* Điều chỉnh vị trí icon mạng xã hội trong navbar */
+.navbar .social-icons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
 }
