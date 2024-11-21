@@ -1,0 +1,251 @@
+<!-- 
+  @Author: Your name
+  @Date:   2024-11-19 22:30:17
+  @Last Modified by:   Your name
+  @Last Modified time: 2024-11-20 22:08:47
+-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kinh Nguyện - Nhà Thờ Giáo Họ Trung Đồng">
+    <title>Kinh Nguyện</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8MXG2YVYK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Y8MXG2YVYK');
+    </script>
+    <!-- End Google Analytics -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://images.pexels.com/photos/6102365/pexels-photo-6102365.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+        }
+
+        .navbar .navbar-brand {
+            font-weight: bold;
+            color: white;
+        }
+
+        .navbar-nav .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            margin-left: 15px;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ff7e5f;
+        }
+
+        .social-icons .nav-link i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .social-icons .nav-link:hover i {
+            color: #ff7e5f;
+        }
+
+        .hero {
+            padding: 60px 20px;
+            color: white;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        section {
+            padding: 60px 0;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        .prayer-text {
+            white-space: pre-line;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative; /* Để định vị phần tử con */
+        }
+
+        .next-prayer-btn, .prev-prayer-btn {
+            position: absolute;
+            bottom: 20px;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .next-prayer-btn {
+            right: 20px;
+            background-color: #ff7e5f;
+        }
+
+        .prev-prayer-btn {
+            left: 20px;
+            background-color: #28a745;
+        }
+
+        .next-prayer-btn:hover, .prev-prayer-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-img img {
+            width: 100%;
+            height: auto;
+            max-width: 600px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .hero {
+                padding: 60px 10px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .prayer-text {
+                font-size: 1rem;
+                padding: 15px;
+            }
+
+            .next-prayer-btn, .prev-prayer-btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">Giáo Họ Trung Đồng</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.facebook.com/GHtrungdong" target="_blank" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.youtube.com/@nhothogiaohotrungong7117" target="_blank" title="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Chào Mừng Đến Giáo Họ Trung Đồng</h1>
+        <p>Vinh danh Thiên Chúa trên các tầng trời và bình an dưới thế cho người thiện tâm</p>
+    </header>
+
+    <!-- Kinh Nguyện Section -->
+    <section id="prayers">
+        <div class="container">
+            <div class="section-header">
+                <h2>Kinh Lạy Linh Hồn Chúa Kitô</h2>
+            </div>
+            <p class="prayer-text">
+                Lạy linh hồn Chúa Kitô, xin thánh hóa con.
+                Lạy xác thánh Chúa Kitô, xin cứu độ con.
+                Lạy Máu Thánh Chúa Kitô, xin làm cho con say mến.
+                Lạy nước bởi nương long Chúa Kitô, xin tẩy rửa con.
+                Lạy sự thương khó Chúa Kitô, xin thêm sức cho con.
+                Lạy Chúa Giêsu nhân ái, xin nhận lời con.
+                Xin giấu ẩn con trong các vết thương Chúa.
+                Xin cho con đừng bao giờ lìa xa Chúa.
+                Xin gìn giữ con khỏi kẻ thù tinh quái.
+                Đến giờ lâm tử, xin Chúa gọi con, và cho con đến cùng Chúa,
+                để con được cùng các thánh ca tụng Chúa muôn đời. AMEN.
+            </p>
+            <!-- Nút chuyển sang kinh Kính Mừng -->
+            <a href="9kinh-tin-cay-men.html" class="next-prayer-btn">Kinh Tin Cậy Mến</a>
+            <!-- Nút quay lại Kinh Lạy Cha -->
+            <a href="7kinh-nghi-yen.html" class="prev-prayer-btn">Quay lại Kinh Nghỉ yên muôn đời</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-img">
+            <img src="https://preview.redd.it/2yaxqarvtv1e1.jpeg?auto=webp&s=e444c63d80ece5a62bd545e64063601eafb8fb39" alt="Footer Image">    
+            <p>&copy; 2024 Giáo Họ Trung Đồng. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
