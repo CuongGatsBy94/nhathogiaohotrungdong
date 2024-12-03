@@ -1,0 +1,17 @@
+# Hướng dẫn dành cho Googlebot và Bingbot
+User-agent: Googlebot
+Allow: /
+User-agent: Bingbot
+Allow: /
+
+# Áp dụng quy tắc chung cho tất cả bot khác
+User-agent: *
+Allow: /
+
+# Chặn các thư mục nhạy cảm hoặc không cần thiết
+Disallow: /admin/
+Disallow: /private/
+Disallow: /tmp/
+
+# Đường dẫn tới sitemap
+Sitemap: https://giaohotrungdong.icu/sitemap.xml
