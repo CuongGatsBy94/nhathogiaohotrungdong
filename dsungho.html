@@ -1,9 +1,3 @@
-<!-- 
-  @Author: Your name
-  @Date:   2025-02-03 21:50:45
-  @Last Modified by:   Your name
-  @Last Modified time: 2025-02-03 23:07:25
--->
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -57,7 +51,7 @@
                 <input type="text" id="name" class="form-control mb-2" placeholder="Họ và Tên">
                 <input type="text" id="parish" class="form-control mb-2" placeholder="Giáo Họ">
                 <input type="number" id="amount" class="form-control mb-2" placeholder="Số Tiền Ủng Hộ">
-                <button class="btn btn-primary" onclick="addDonor()">Thêm Người Ủng Hộ</button>
+                <button class="btn btn-primary" id="addDonorButton" onclick="addDonor()" style="display:none;">Thêm Người Ủng Hộ</button>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
@@ -81,11 +75,10 @@
         <p>&copy; 2024 Giáo Họ Trung Đồng. All rights reserved.</p>
     </footer>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
     <script>
         // Cấu hình Firebase
         const firebaseConfig = {
@@ -98,108 +91,84 @@
             measurementId: "G-BCXYX203FC"
         };
 
-        // Khởi tạo Firebase
         const app = firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
-        const db = firebase.firestore();
+        const firestore = firebase.firestore();
 
-        // Kiểm tra người dùng đã đăng nhập chưa
+        // Quản lý đăng nhập
         auth.onAuthStateChanged(user => {
             if (user) {
-                document.getElementById("loginSection").style.display = "none";
-                document.getElementById("logoutSection").style.display = "block";
+                const uid = user.uid;
+                const userRef = firestore.collection('users').doc(uid);
+                
+                userRef.get().then(doc => {
+                    if (doc.exists && doc.data().role === 'admin') {
+                        // Nếu người dùng có quyền admin, hiển thị nút Thêm Người Ủng Hộ
+                        document.getElementById('addDonorButton').style.display = 'block';
+                    } else {
+                        // Nếu không phải admin, ẩn nút Thêm Người Ủng Hộ
+                        document.getElementById('addDonorButton').style.display = 'none';
+                    }
+                });
             } else {
-                document.getElementById("loginSection").style.display = "block";
-                document.getElementById("logoutSection").style.display = "none";
+                // Nếu chưa đăng nhập, ẩn nút Thêm Người Ủng Hộ
+                document.getElementById('addDonorButton').style.display = 'none';
             }
         });
 
-        // Hàm đăng nhập Google
-        async function loginWithGoogle() {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            await auth.signInWithPopup(provider);
-            alert("Đăng nhập thành công!");
-        }
-
-        // Hàm đăng xuất
-        function logout() {
-            auth.signOut();
-            alert("Đăng xuất thành công!");
-        }
-
-        // Kiểm tra quyền truy cập trước khi thêm dữ liệu
-        async function addDonor() {
-            const user = auth.currentUser;
-            if (!user) {
-                alert("Bạn cần đăng nhập để thêm người ủng hộ!");
-                return;
-            }
-
-            const name = document.getElementById("name").value;
-            const parish = document.getElementById("parish").value;
-            const amount = document.getElementById("amount").value;
+        // Thêm người ủng hộ vào Firestore
+        function addDonor() {
+            const name = document.getElementById('name').value;
+            const parish = document.getElementById('parish').value;
+            const amount = document.getElementById('amount').value;
 
             if (name && parish && amount) {
-                await db.collection("donations").add({
-                    name,
-                    parish,
-                    amount,
-                    addedBy: user.uid,  // Thêm thông tin người thêm dữ liệu
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                });
+                const newDonor = {
+                    name: name,
+                    parish: parish,
+                    amount: amount,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                };
 
-                renderTable(currentPage);
-                renderPagination();
+                firestore.collection('donations').add(newDonor)
+                    .then(() => {
+                        alert('Thêm người ủng hộ thành công!');
+                        renderTable();
+                    })
+                    .catch(error => {
+                        alert('Có lỗi xảy ra: ' + error.message);
+                    });
 
-                document.getElementById("name").value = "";
-                document.getElementById("parish").value = "";
-                document.getElementById("amount").value = "";
+                // Làm sạch các trường nhập
+                document.getElementById('name').value = '';
+                document.getElementById('parish').value = '';
+                document.getElementById('amount').value = '';
             } else {
-                alert("Vui lòng nhập đầy đủ thông tin!");
+                alert('Vui lòng nhập đầy đủ thông tin!');
             }
         }
 
-        const rowsPerPage = 50;
-        let currentPage = 1;
-        const donors = [];
+        // Render bảng danh sách người ủng hộ
+        function renderTable() {
+            const donorsRef = firestore.collection('donations').orderBy('createdAt');
+            donorsRef.get().then(querySnapshot => {
+                const tableBody = document.getElementById('donationTable');
+                tableBody.innerHTML = '';
 
-        function renderTable(page) {
-            const start = (page - 1) * rowsPerPage;
-            const end = start + rowsPerPage;
-            const tableBody = document.getElementById("donationTable");
-            tableBody.innerHTML = "";
-
-            donors.slice(start, end).forEach((donor, index) => {
-                const row = `<tr>
-                    <td>${start + index + 1}</td>
-                    <td>${donor.name}</td>
-                    <td>${donor.parish}</td>
-                    <td>${donor.amount}</td>
-                </tr>`;
-                tableBody.innerHTML += row;
+                querySnapshot.forEach((doc, index) => {
+                    const donor = doc.data();
+                    const row = `<tr>
+                        <td>${index + 1}</td>
+                        <td>${donor.name}</td>
+                        <td>${donor.parish}</td>
+                        <td>${donor.amount}</td>
+                    </tr>`;
+                    tableBody.innerHTML += row;
+                });
             });
         }
 
-        function renderPagination() {
-            const totalPages = Math.ceil(donors.length / rowsPerPage);
-            const pagination = document.getElementById("pagination");
-            pagination.innerHTML = "";
-
-            for (let i = 1; i <= totalPages; i++) {
-                const li = document.createElement("li");
-                li.className = `page-item ${i === currentPage ? "active" : ""}`;
-                li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
-                li.addEventListener("click", () => {
-                    currentPage = i;
-                    renderTable(currentPage);
-                    renderPagination();
-                });
-                pagination.appendChild(li);
-            }
-        }
-
-        renderTable(currentPage);
-        renderPagination();
+        renderTable();
     </script>
 </body>
 </html>
