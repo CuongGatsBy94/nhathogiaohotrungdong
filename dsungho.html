@@ -49,7 +49,10 @@
                 <li class="nav-item"><a class="nav-link" href="#about">Giới Thiệu</a></li>
                 <li class="nav-item"><a class="nav-link" href="#services">Hoạt Động</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Liên Hệ</a></li>
-                <li class="nav-item"><a class="nav-link" href="javascript:void(0);" onclick="logout()">Đăng Xuất</a></li>
+                <li class="nav-item">
+                    <!-- Đổi href="javascript:void(0)" thành nút đăng xuất -->
+                    <button class="nav-link btn" onclick="logout()">Đăng Xuất</button>
+                </li>
             </ul>
         </div>
     </nav>
@@ -165,10 +168,10 @@
         // Đăng xuất
         function logout() {
             auth.signOut().then(() => {
-                alert('Đăng xuất thành công!');
+                alert('Đã đăng xuất');
                 document.getElementById('loginForm').style.display = 'block'; // Hiển thị lại form đăng nhập
             }).catch((error) => {
-                console.log('Lỗi đăng xuất: ', error);
+                alert('Lỗi khi đăng xuất: ' + error.message);
             });
         }
 
@@ -183,45 +186,48 @@
                     name: name,
                     parish: parish,
                     amount: amount,
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 };
 
-                firestore.collection('donors').add(newDonor)
+                firestore.collection('donations').add(newDonor)
                     .then(() => {
                         alert('Thêm người ủng hộ thành công!');
                         renderTable();
                     })
-                    .catch((error) => {
-                        alert('Lỗi khi thêm người ủng hộ: ' + error.message);
+                    .catch(error => {
+                        alert('Có lỗi xảy ra: ' + error.message);
                     });
+
+                // Làm sạch các trường nhập
+                document.getElementById('name').value = '';
+                document.getElementById('parish').value = '';
+                document.getElementById('amount').value = '';
             } else {
                 alert('Vui lòng nhập đầy đủ thông tin!');
             }
         }
 
-        // Hiển thị danh sách người ủng hộ
+        // Render bảng danh sách người ủng hộ
         function renderTable() {
-            firestore.collection('donors').orderBy('timestamp', 'desc').get()
-                .then(snapshot => {
-                    const donors = snapshot.docs.map(doc => doc.data());
-                    const tableBody = document.getElementById('donationTable');
-                    tableBody.innerHTML = ''; // Làm sạch bảng
+            const donorsRef = firestore.collection('donations').orderBy('createdAt');
+            donorsRef.get().then(querySnapshot => {
+                const tableBody = document.getElementById('donationTable');
+                tableBody.innerHTML = '';
 
-                    donors.forEach((donor, index) => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${index + 1}</td>
-                            <td>${donor.name}</td>
-                            <td>${donor.parish}</td>
-                            <td>${donor.amount}</td>
-                        `;
-                        tableBody.appendChild(row);
-                    });
+                querySnapshot.forEach((doc, index) => {
+                    const donor = doc.data();
+                    const row = `<tr>
+                        <td>${index + 1}</td>
+                        <td>${donor.name}</td>
+                        <td>${donor.parish}</td>
+                        <td>${donor.amount}</td>
+                    </tr>`;
+                    tableBody.innerHTML += row;
                 });
+            });
         }
 
-        // Khi tải trang, hiển thị danh sách người ủng hộ
-        window.onload = renderTable;
+        renderTable();
     </script>
 </body>
 </html>
