@@ -1,0 +1,205 @@
+<!-- 
+  @Author: Your name
+  @Date:   2025-02-03 21:50:45
+  @Last Modified by:   Your name
+  @Last Modified time: 2025-02-03 23:07:25
+-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="w1NH3M5PiBfskkvCzulARP0eFddvgKkWJs3E1GHuB2c" />
+    <meta name="msvalidate.01" content="CACCA3CDB162ADDD475C6F85AEAFF2A6" />
+    <title>Giáo Họ Trung Đồng</title>
+    <meta name="description" content="Nhà Thờ Giáo Họ Trung Đồng - Giáo Xứ Lạc Thành - Giáo Phận Bùi Chu">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            flex: 1;
+        }
+        footer {
+            position: relative;
+            width: 100%;
+            bottom: 0;
+        }
+        .pagination {
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">Giáo Họ Trung Đồng</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#about">Giới Thiệu</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">Hoạt Động</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Liên Hệ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="donation" class="section bg-light">
+        <div class="container">
+            <h2 class="text-center">Danh Sách Ủng Hộ</h2>
+            <div class="mb-4">
+                <input type="text" id="name" class="form-control mb-2" placeholder="Họ và Tên">
+                <input type="text" id="parish" class="form-control mb-2" placeholder="Giáo Họ">
+                <input type="number" id="amount" class="form-control mb-2" placeholder="Số Tiền Ủng Hộ">
+                <button class="btn btn-primary" onclick="addDonor()">Thêm Người Ủng Hộ</button>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>STT</th>
+                            <th>Họ và Tên</th>
+                            <th>Giáo Họ</th>
+                            <th>Số Tiền Ủng Hộ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="donationTable">
+                    </tbody>
+                </table>
+            </div>
+            <ul class="pagination" id="pagination"></ul>
+        </div>
+    </section>
+
+    <footer class="text-center py-3 bg-dark text-white">
+        <p>&copy; 2024 Giáo Họ Trung Đồng. All rights reserved.</p>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+
+    <script>
+        // Cấu hình Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCW1xceRs9zr8obVqH9vYWmlsgTPk3C10U",
+            authDomain: "dsungho.firebaseapp.com",
+            projectId: "dsungho",
+            storageBucket: "dsungho.firebasestorage.app",
+            messagingSenderId: "867837609095",
+            appId: "1:867837609095:web:b577cbf70c1b598438e422",
+            measurementId: "G-BCXYX203FC"
+        };
+
+        // Khởi tạo Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // Kiểm tra người dùng đã đăng nhập chưa
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                document.getElementById("loginSection").style.display = "none";
+                document.getElementById("logoutSection").style.display = "block";
+            } else {
+                document.getElementById("loginSection").style.display = "block";
+                document.getElementById("logoutSection").style.display = "none";
+            }
+        });
+
+        // Hàm đăng nhập Google
+        async function loginWithGoogle() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            await auth.signInWithPopup(provider);
+            alert("Đăng nhập thành công!");
+        }
+
+        // Hàm đăng xuất
+        function logout() {
+            auth.signOut();
+            alert("Đăng xuất thành công!");
+        }
+
+        // Kiểm tra quyền truy cập trước khi thêm dữ liệu
+        async function addDonor() {
+            const user = auth.currentUser;
+            if (!user) {
+                alert("Bạn cần đăng nhập để thêm người ủng hộ!");
+                return;
+            }
+
+            const name = document.getElementById("name").value;
+            const parish = document.getElementById("parish").value;
+            const amount = document.getElementById("amount").value;
+
+            if (name && parish && amount) {
+                await db.collection("donations").add({
+                    name,
+                    parish,
+                    amount,
+                    addedBy: user.uid,  // Thêm thông tin người thêm dữ liệu
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                renderTable(currentPage);
+                renderPagination();
+
+                document.getElementById("name").value = "";
+                document.getElementById("parish").value = "";
+                document.getElementById("amount").value = "";
+            } else {
+                alert("Vui lòng nhập đầy đủ thông tin!");
+            }
+        }
+
+        const rowsPerPage = 50;
+        let currentPage = 1;
+        const donors = [];
+
+        function renderTable(page) {
+            const start = (page - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const tableBody = document.getElementById("donationTable");
+            tableBody.innerHTML = "";
+
+            donors.slice(start, end).forEach((donor, index) => {
+                const row = `<tr>
+                    <td>${start + index + 1}</td>
+                    <td>${donor.name}</td>
+                    <td>${donor.parish}</td>
+                    <td>${donor.amount}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(donors.length / rowsPerPage);
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            for (let i = 1; i <= totalPages; i++) {
+                const li = document.createElement("li");
+                li.className = `page-item ${i === currentPage ? "active" : ""}`;
+                li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+                li.addEventListener("click", () => {
+                    currentPage = i;
+                    renderTable(currentPage);
+                    renderPagination();
+                });
+                pagination.appendChild(li);
+            }
+        }
+
+        renderTable(currentPage);
+        renderPagination();
+    </script>
+</body>
+</html>
