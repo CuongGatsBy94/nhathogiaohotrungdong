@@ -27,6 +27,13 @@
             justify-content: center;
             margin-top: 20px;
         }
+        /* Định dạng phần đăng nhập */
+        #loginForm {
+            display: none;
+        }
+        #userInfo {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -40,9 +47,32 @@
                 <li class="nav-item"><a class="nav-link" href="#about">Giới Thiệu</a></li>
                 <li class="nav-item"><a class="nav-link" href="#services">Hoạt Động</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Liên Hệ</a></li>
+                <li class="nav-item"><a class="nav-link" href="javascript:void(0);" id="loginBtn">Đăng Nhập</a></li>
+                <li class="nav-item"><a class="nav-link" href="javascript:void(0);" id="logoutBtn" style="display:none;">Đăng Xuất</a></li>
             </ul>
         </div>
     </nav>
+
+    <!-- Form đăng nhập -->
+    <div id="loginForm" class="container">
+        <h2 class="text-center">Đăng Nhập</h2>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" class="form-control" placeholder="Email của bạn" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Mật khẩu:</label>
+            <input type="password" id="password" class="form-control" placeholder="Mật khẩu của bạn" required>
+        </div>
+        <button class="btn btn-primary" onclick="login()">Đăng Nhập</button>
+        <p id="loginError" class="text-danger" style="display:none;"></p>
+    </div>
+
+    <!-- Thông tin người dùng sau khi đăng nhập -->
+    <div id="userInfo" class="container">
+        <p>Chào mừng, <span id="userEmail"></span></p>
+        <button class="btn btn-danger" onclick="logout()">Đăng Xuất</button>
+    </div>
 
     <section id="donation" class="section bg-light">
         <div class="container">
@@ -110,11 +140,63 @@
                         document.getElementById('addDonorButton').style.display = 'none';
                     }
                 });
+
+                // Hiển thị thông tin người dùng và ẩn form đăng nhập
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('userInfo').style.display = 'block';
+                document.getElementById('userEmail').innerText = user.email;
+                document.getElementById('loginBtn').style.display = 'none';
+                document.getElementById('logoutBtn').style.display = 'block';
             } else {
-                // Nếu chưa đăng nhập, ẩn nút Thêm Người Ủng Hộ
+                // Nếu chưa đăng nhập, ẩn các phần có liên quan và hiển thị form đăng nhập
                 document.getElementById('addDonorButton').style.display = 'none';
+                document.getElementById('userInfo').style.display = 'none';
+                document.getElementById('loginForm').style.display = 'block';
+                document.getElementById('loginBtn').style.display = 'block';
+                document.getElementById('logoutBtn').style.display = 'none';
             }
         });
+
+        // Hàm đăng nhập
+        function login() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("loginError");
+
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Đăng nhập thành công
+                    errorMessage.style.display = "none";
+                    renderUIForAuthenticatedUser(userCredential.user);
+                })
+                .catch((error) => {
+                    // Xử lý lỗi
+                    errorMessage.style.display = "block";
+                    errorMessage.textContent = "Lỗi đăng nhập: " + error.message;
+                });
+        }
+
+        // Hàm xử lý giao diện sau khi người dùng đăng nhập thành công
+        function renderUIForAuthenticatedUser(user) {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('userInfo').style.display = 'block';
+            document.getElementById('userEmail').innerText = user.email;
+            document.getElementById('loginBtn').style.display = 'none';
+            document.getElementById('logoutBtn').style.display = 'block';
+        }
+
+        // Hàm đăng xuất
+        function logout() {
+            firebase.auth().signOut().then(() => {
+                document.getElementById('userInfo').style.display = 'none';
+                document.getElementById('loginForm').style.display = 'block';
+                document.getElementById('loginBtn').style.display = 'block';
+                document.getElementById('logoutBtn').style.display = 'none';
+                alert('Đăng xuất thành công!');
+            }).catch((error) => {
+                alert("Lỗi khi đăng xuất: " + error.message);
+            });
+        }
 
         // Thêm người ủng hộ vào Firestore
         function addDonor() {
