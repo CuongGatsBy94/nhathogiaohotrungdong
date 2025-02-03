@@ -60,7 +60,7 @@
         <div>
             <input type="email" id="email" class="form-control mb-2" placeholder="Email" />
             <input type="password" id="password" class="form-control mb-2" placeholder="Mật khẩu" />
-            <button class="btn btn-primary" onclick="login()">Đăng Nhập</button>
+            <button class="btn btn-primary" id="loginButton">Đăng Nhập</button>
             <p id="loginError" class="text-danger mt-2" style="display:none;">Sai thông tin đăng nhập</p>
         </div>
     </div>
@@ -140,7 +140,7 @@
         });
 
         // Đăng nhập
-        function login() {
+        document.getElementById('loginButton').addEventListener('click', function() {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
@@ -160,7 +160,7 @@
             } else {
                 alert('Vui lòng nhập đầy đủ thông tin!');
             }
-        }
+        });
 
         // Đăng xuất
         function logout() {
