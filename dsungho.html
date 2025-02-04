@@ -1,9 +1,3 @@
-<!-- 
-  @Author: Your name
-  @Date:   2025-02-03 21:50:45
-  @Last Modified by:   Your name
-  @Last Modified time: 2025-02-04 18:33:34
--->
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -68,7 +62,7 @@
         const apiUrl = 'https://script.google.com/macros/s/AKfycbw80UPzyIwEiiLjcMbZrTHu-ulflSRby0GOiriCrXaPyZPgQQjJn134WQZFSfN68z4v5g/exec'; // Thay thế bằng URL của Google Apps Script
 
         function renderTable() {
-            fetch(apiUrl)
+            fetch(`${apiUrl}?action=get`)
                 .then(response => response.json())
                 .then(data => {
                     const tableBody = document.getElementById('donationTable');
@@ -96,7 +90,7 @@
 
                 fetch(apiUrl, {
                     method: 'POST',
-                    body: JSON.stringify(newDonor),
+                    body: JSON.stringify({ action: 'add', ...newDonor }),
                     headers: { 'Content-Type': 'application/json' }
                 })
                 .then(response => response.json())
