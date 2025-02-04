@@ -1,40 +1,28 @@
+<!-- 
+  @Author: Your name
+  @Date:   2025-02-03 21:50:45
+  @Last Modified by:   Your name
+  @Last Modified time: 2025-02-04 18:33:34
+-->
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="w1NH3M5PiBfskkvCzulARP0eFddvgKkWJs3E1GHuB2c" />
-    <meta name="msvalidate.01" content="CACCA3CDB162ADDD475C6F85AEAFF2A6" />
     <title>Giáo Họ Trung Đồng</title>
     <meta name="description" content="Nhà Thờ Giáo Họ Trung Đồng - Giáo Xứ Lạc Thành - Giáo Phận Bùi Chu">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        .container {
-            flex: 1;
-        }
-        footer {
-            position: relative;
-            width: 100%;
-            bottom: 0;
-        }
-        .pagination {
-            justify-content: center;
-            margin-top: 20px;
-        }
-        #loginForm {
-            display: none;
-        }
+        body { display: flex; flex-direction: column; min-height: 100vh; }
+        .container { flex: 1; }
+        footer { position: relative; width: 100%; bottom: 0; }
+        .pagination { justify-content: center; margin-top: 20px; }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.html">Giáo Họ Trung Đồng</a>
+        <a class="navbar-brand" href="#">Giáo Họ Trung Đồng</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -43,25 +31,9 @@
                 <li class="nav-item"><a class="nav-link" href="#about">Giới Thiệu</a></li>
                 <li class="nav-item"><a class="nav-link" href="#services">Hoạt Động</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Liên Hệ</a></li>
-                <li class="nav-item"><a class="nav-link" href="javascript:void(0)" id="loginLink">Đăng Nhập</a></li>
             </ul>
         </div>
     </nav>
-
-    <!-- Form đăng nhập -->
-    <div id="loginForm" class="container">
-        <h3 class="text-center">Đăng Nhập</h3>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" class="form-control" placeholder="Nhập email">
-        </div>
-        <div class="form-group">
-            <label for="password">Mật khẩu:</label>
-            <input type="password" id="password" class="form-control" placeholder="Nhập mật khẩu">
-        </div>
-        <button class="btn btn-primary" id="loginButton">Đăng Nhập</button>
-        <div id="loginError" style="color: red; display: none;">Đăng nhập thất bại, vui lòng thử lại.</div>
-    </div>
 
     <section id="donation" class="section bg-light">
         <div class="container">
@@ -70,7 +42,7 @@
                 <input type="text" id="name" class="form-control mb-2" placeholder="Họ và Tên">
                 <input type="text" id="parish" class="form-control mb-2" placeholder="Giáo Họ">
                 <input type="number" id="amount" class="form-control mb-2" placeholder="Số Tiền Ủng Hộ">
-                <button class="btn btn-primary" id="addDonorButton" onclick="addDonor()" style="display:none;">Thêm Người Ủng Hộ</button>
+                <button class="btn btn-primary" onclick="addDonor()">Thêm Người Ủng Hộ</button>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
@@ -85,7 +57,6 @@
                     <tbody id="donationTable"></tbody>
                 </table>
             </div>
-            <ul class="pagination" id="pagination"></ul>
         </div>
     </section>
 
@@ -93,109 +64,50 @@
         <p>&copy; 2024 Giáo Họ Trung Đồng. All rights reserved.</p>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
     <script>
-        // Cấu hình Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyCW1xceRs9zr8obVqH9vYWmlsgTPk3C10U",
-            authDomain: "dsungho.firebaseapp.com",
-            projectId: "dsungho",
-            storageBucket: "dsungho.firebasestorage.app",
-            messagingSenderId: "867837609095",
-            appId: "1:867837609095:web:b577cbf70c1b598438e422",
-            measurementId: "G-BCXYX203FC"
-        };
+        const apiUrl = 'https://script.google.com/macros/s/AKfycbw80UPzyIwEiiLjcMbZrTHu-ulflSRby0GOiriCrXaPyZPgQQjJn134WQZFSfN68z4v5g/exec'; // Thay thế bằng URL của Google Apps Script
 
-        // Khởi tạo Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-
-        // Khởi tạo các dịch vụ Firebase
-        const auth = firebase.auth();
-        const firestore = firebase.firestore();
-
-        // Quản lý đăng nhập
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                const uid = user.uid;
-                const userRef = firestore.collection('users').doc(uid);
-                
-                userRef.get().then(doc => {
-                    if (doc.exists && doc.data().role === 'admin') {
-                        // Nếu người dùng có quyền admin, hiển thị nút Thêm Người Ủng Hộ
-                        document.getElementById('addDonorButton').style.display = 'block';
-                    } else {
-                        // Nếu không phải admin, ẩn nút Thêm Người Ủng Hộ
-                        document.getElementById('addDonorButton').style.display = 'none';
-                    }
-                });
-                document.getElementById('loginForm').style.display = 'none'; // Ẩn form đăng nhập khi đã đăng nhập
-            } else {
-                // Nếu chưa đăng nhập, ẩn nút Thêm Người Ủng Hộ và hiển thị form đăng nhập
-                document.getElementById('addDonorButton').style.display = 'none';
-                document.getElementById('loginForm').style.display = 'block';
-            }
-        });
-
-        // Đăng nhập
-        document.getElementById('loginButton').addEventListener('click', function() {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            if (email && password) {
-                auth.signInWithEmailAndPassword(email, password)
-                    .then((userCredential) => {
-                        const user = userCredential.user;
-                        alert('Đăng nhập thành công!');
-                        document.getElementById('loginForm').style.display = 'none'; // Ẩn form đăng nhập sau khi đăng nhập thành công
-                    })
-                    .catch((error) => {
-                        const errorCode = error.code;
-                        const errorMessage = error.message;
-                        document.getElementById('loginError').style.display = 'block'; // Hiển thị thông báo lỗi
-                        console.log(errorCode, errorMessage);
+        function renderTable() {
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('donationTable');
+                    tableBody.innerHTML = '';
+                    data.forEach((donor, index) => {
+                        const row = `<tr>
+                            <td>${index + 1}</td>
+                            <td>${donor.name}</td>
+                            <td>${donor.parish}</td>
+                            <td>${donor.amount}</td>
+                        </tr>`;
+                        tableBody.innerHTML += row;
                     });
-            } else {
-                alert('Vui lòng nhập đầy đủ thông tin!');
-            }
-        });
-
-        // Đăng xuất
-        function logout() {
-            auth.signOut().then(() => {
-                alert('Đã đăng xuất');
-                document.getElementById('loginForm').style.display = 'block'; // Hiển thị lại form đăng nhập
-            }).catch((error) => {
-                alert('Lỗi khi đăng xuất: ' + error.message);
-            });
+                })
+                .catch(error => console.error('Error fetching data:', error));
         }
 
-        // Thêm người ủng hộ vào Firestore
         function addDonor() {
             const name = document.getElementById('name').value;
             const parish = document.getElementById('parish').value;
             const amount = document.getElementById('amount').value;
 
             if (name && parish && amount) {
-                const newDonor = {
-                    name: name,
-                    parish: parish,
-                    amount: amount,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                };
+                const newDonor = { name, parish, amount };
 
-                firestore.collection('donations').add(newDonor)
-                    .then(() => {
+                fetch(apiUrl, {
+                    method: 'POST',
+                    body: JSON.stringify(newDonor),
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
                         alert('Thêm người ủng hộ thành công!');
                         renderTable();
-                    })
-                    .catch(error => {
-                        alert('Có lỗi xảy ra: ' + error.message);
-                    });
+                    }
+                })
+                .catch(error => console.error('Error adding donor:', error));
 
-                // Làm sạch các trường nhập
                 document.getElementById('name').value = '';
                 document.getElementById('parish').value = '';
                 document.getElementById('amount').value = '';
@@ -204,27 +116,7 @@
             }
         }
 
-        // Render bảng danh sách người ủng hộ
-        function renderTable() {
-            const donorsRef = firestore.collection('donations').orderBy('createdAt');
-            donorsRef.get().then(querySnapshot => {
-                const tableBody = document.getElementById('donationTable');
-                tableBody.innerHTML = '';
-
-                querySnapshot.forEach((doc, index) => {
-                    const donor = doc.data();
-                    const row = `<tr>
-                        <td>${index + 1}</td>
-                        <td>${donor.name}</td>
-                        <td>${donor.parish}</td>
-                        <td>${donor.amount}</td>
-                    </tr>`;
-                    tableBody.innerHTML += row;
-                });
-            });
-        }
-
-        renderTable();
+        document.addEventListener('DOMContentLoaded', renderTable);
     </script>
 </body>
 </html>
