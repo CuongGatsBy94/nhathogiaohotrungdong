@@ -1,8 +1,8 @@
 <!-- 
-  @Author: Cường GatsBy
+  @Author: Your name
   @Date:   2025-02-03 21:50:45
-  @Last Modified by:   Cường GatsBy
-  @Last Modified time: 2025-02-04 19:18:01
+  @Last Modified by:   Your name
+  @Last Modified time: 2025-02-04 19:20:51
 -->
 <!DOCTYPE html>
 <html lang="vi">
@@ -18,19 +18,26 @@
       margin: 0;
       padding: 0;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
       height: 100vh;
     }
 
-    /* Phần tiêu đề */
+    /* Phần tiêu đề - cố định trên đầu */
     h1 {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #ffffff;
       text-align: center;
       color: #333;
-      font-size: 2.5rem;
-      margin-bottom: 30px;
-      text-transform: uppercase;
+      font-size: 1.8rem; /* Thu nhỏ chữ */
+      margin: 0;
+      padding: 15px 0;
       font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1000; /* Đảm bảo tiêu đề luôn ở trên */
     }
 
     /* Phần nội dung chính */
@@ -39,6 +46,7 @@
       padding: 0;
       width: 80%;
       max-width: 800px;
+      margin-top: 80px; /* Khoảng cách từ tiêu đề đến phần nội dung */
     }
 
     /* Mỗi mục trong danh sách */
