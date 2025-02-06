@@ -1,0 +1,295 @@
+<!-- 
+  @Author: Your name
+  @Date:   2025-02-03 21:50:45
+  @Last Modified by:   Your name
+  @Last Modified time: 2025-02-06 19:25:13
+-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách ủng hộ đội bóng</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #2d8b25;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: center; /* Canh giữa phần nội dung */
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .home-button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .home-button:hover {
+            background-color: #2980b9;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #3498db;
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f4f4f4;
+        }
+
+        table tr:hover {
+            background-color: #e0f7fa;
+        }
+
+        table td {
+            color: #555;
+        }
+
+        /* Pagination */
+        .pagination-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .pagination {
+            list-style: none;
+            display: inline-block;
+            padding: 0;
+        }
+
+        .page-item {
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+        .page-item a {
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .page-item.active a {
+            background-color: #2980b9;
+        }
+
+        .page-item a:hover {
+            background-color: #2980b9;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 20px;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            table th, table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <!-- Nút "Trang chủ" -->
+            <button class="home-button" onclick="window.location.href='index.html'">Trang chủ</button>
+            <h1>Danh sách ủng hộ</h1>
+        </div>
+    </header>
+
+    <!-- Container -->
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Họ và tên</th>
+                    <th>Giáo họ</th>
+                    <th>Số tiền ủng hộ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dữ liệu sẽ được thêm vào đây -->
+            </tbody>
+        </table>
+
+        <!-- Phân trang -->
+        <div class="pagination-container">
+            <ul class="pagination">
+                <!-- Các trang sẽ được thêm vào đây -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Danh sách ủng hộ</a>. Thiết kế bởi <a href="https://www.facebook.com/cuonggatsby1994/" target="_blank">Cường GatsBy</a>.</p>
+    </footer>
+
+    <script>
+        const rowsPerPage = 15;
+        let currentPage = 1;
+        let data = [
+            {stt: 1, name: "Ông trưởng - Đông", church: "Trung Đồng", amount: "1,000,000 VND"},
+            {stt: 2, name: "Ông trùm - Toán", church: "Trung Đồng", amount: "1,200,000 VND"},
+            {stt: 3, name: "Anh - Quân", church: "Trung Đồng", amount: "200,000 VND"},
+            {stt: 4, name: "Ông trưởng - Bắc", church: "Trung Đồng", amount: "200,000 VND"},
+            {stt: 5, name: "Ông trưởng - Thọ", church: "Trung Đồng", amount: "500,000 VND"},
+            {stt: 6, name: "Ông Ký - Ngọc", church: "Trung Đồng", amount: "Chưa Cập nhật"},
+            {stt: 7, name: "Ông quản - Giang", church: "Trung Đồng", amount: "Chưa cập nhật"},
+            {stt: 8, name: "Ông trưởng - Thắng", church: "Trung Đồng", amount: "500,000 VND"},
+            {stt: 9, name: "Ông ký - Chức", church: "Trung Đồng", amount: "400,000 VND"},
+            {stt: 10, name: "Ông quản - Tuyến", church: "Trung Đồng", amount: "100,000 VND"},
+            {stt: 11, name: "Bà quản - Vinh", church: "Trung Đồng", amount: "100,000 VND"},
+            {stt: 12, name: "Cô - Len (Bà Nhì)", church: "Trung Đồng", amount: "500,000 VND"},
+            {stt: 13, name: "Anh - Tiệp", church: "Trung Đồng", amount: "500,000 VND"},
+            {stt: 14, name: "Ông trùm - Bảo", church: "Trung Đồng", amount: "200,000 VND"},
+            {stt: 15, name: "Anh - Lượng", church: "Trung Đồng", amount: "1,500,000 VND"},
+            {stt: 16, name: "Ông quản - Liệu", church: "Trung Đồng", amount: "300,000 VND"},
+            {stt: 17, name: "Anh - Định", church: "Trung Đồng", amount: "500,000 VND"},
+            {stt: 18, name: "Anh - Hùng", church: "Trung Đồng", amount: "500,000 VND"},
+            {stt: 19, name: "Ông trưởng - Phong", church: "Trung Đồng", amount: "500,000 VND"},
+            {stt: 20, name: "Anh - Phú", church: "Trung Đồng", amount: "1,000,000 VND"},
+            {stt: 21, name: "Anh - Oanh", church: "Trung Đồng", amount: "500,000 VND"}
+];
+
+        // Hàm hiển thị bảng và cập nhật STT
+        function displayTable(page) {
+            const startIndex = (page - 1) * rowsPerPage;
+            const endIndex = startIndex + rowsPerPage;
+            const pageData = data.slice(startIndex, endIndex);
+
+            const tableBody = document.querySelector('table tbody');
+            tableBody.innerHTML = ''; // Xóa dữ liệu cũ trong bảng
+
+            pageData.forEach((donation, index) => {
+                const row = document.createElement('tr');
+                const stt = startIndex + index + 1;  // STT bắt đầu từ 1 trên mỗi trang
+
+                row.innerHTML = ` 
+                    <td>${stt}</td>
+                    <td>${donation.name}</td>
+                    <td>${donation.church}</td>
+                    <td>${donation.amount}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Hàm thiết lập phân trang
+        function setupPagination() {
+            const totalPages = Math.ceil(data.length / rowsPerPage);
+            const paginationContainer = document.querySelector('.pagination');
+            paginationContainer.innerHTML = ''; // Xóa phân trang cũ
+
+            // Tạo nút phân trang
+            for (let i = 1; i <= totalPages; i++) {
+                const pageLink = document.createElement('a');
+                pageLink.href = '#';
+                pageLink.classList.add('page-link');
+                pageLink.textContent = i;
+                pageLink.addEventListener('click', () => {
+                    currentPage = i;
+                    displayTable(currentPage);
+                    setupPagination();
+                });
+
+                const pageItem = document.createElement('li');
+                pageItem.classList.add('page-item');
+                if (i === currentPage) {
+                    pageItem.classList.add('active');
+                }
+                pageItem.appendChild(pageLink);
+                paginationContainer.appendChild(pageItem);
+            }
+        }
+
+        // Khi trang tải, hiển thị dữ liệu trang 1
+        displayTable(currentPage);
+        setupPagination();
+    </script>
+</body>
+</html>
