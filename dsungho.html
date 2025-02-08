@@ -1,139 +1,291 @@
 <!-- 
-  @Author: Your name
+  @Author: Cường GatsBy
   @Date:   2025-02-03 21:50:45
-  @Last Modified by:   Your name
-  @Last Modified time: 2025-02-04 19:20:51
+  @Last Modified by:   Cường GatsBy
+  @Last Modified time: 2025-02-08 18:33:57
 -->
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Danh Sách ủng Hộ</title>
-  <style>
-    /* Tổng thể trang */
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f8f9fa;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 100vh;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách ủng hộ trần nhà thờ</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* Phần tiêu đề - cố định trên đầu */
-    h1 {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: #ffffff;
-      text-align: center;
-      color: #333;
-      font-size: 1.8rem; /* Thu nhỏ chữ */
-      margin: 0;
-      padding: 15px 0;
-      font-weight: bold;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      z-index: 1000; /* Đảm bảo tiêu đề luôn ở trên */
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #7f258b;
+            line-height: 1.6;
+        }
 
-    /* Phần nội dung chính */
-    #dataList {
-      list-style-type: none;
-      padding: 0;
-      width: 80%;
-      max-width: 800px;
-      margin-top: 80px; /* Khoảng cách từ tiêu đề đến phần nội dung */
-    }
+        /* Header */
+        header {
+            background-color: #020202;
+            color: #9933FF;
+            padding: 10px 0;
+            text-align: center;
+            box-shadow: 0 20px 4px rgba(0, 0, 0, 0.1);
+        }
 
-    /* Mỗi mục trong danh sách */
-    #dataList li {
-      background-color: #ffffff;
-      margin: 15px 0;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #555;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
+        .header-container {
+            display: flex;
+            justify-content: center; /* Canh giữa phần nội dung */
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    /* Hiệu ứng hover cho mục */
-    #dataList li:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    }
+        .home-button {
+            background-color: #99CC66;
+            color: #9933CC;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 20px;
+            transition: background-color 0.3s;
+        }
 
-    /* Đường viền cho phần mục */
-    #dataList li:nth-child(even) {
-      background-color: #f2f2f2;
-    }
+        .home-button:hover {
+            background-color: #2980b9;
+        }
 
-    /* Điều chỉnh đường viền mục */
-    #dataList li:first-child {
-      border-top: 3px solid #007bff;
-    }
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
 
-    /* Phần giữa trang */
-    .container {
-      text-align: center;
-      padding: 20px;
-      background-color: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 900px;
-    }
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
 
-    /* Phần loading nếu đang tải */
-    .loading {
-      font-size: 1.2rem;
-      color: #007bff;
-      font-weight: bold;
-    }
-  </style>
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #3498db;
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f4f4f4;
+        }
+
+        table tr:hover {
+            background-color: #e0f7fa;
+        }
+
+        table td {
+            color: #555;
+        }
+
+        /* Pagination */
+        .pagination-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .pagination {
+            list-style: none;
+            display: inline-block;
+            padding: 0;
+        }
+
+        .page-item {
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+        .page-item a {
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .page-item.active a {
+            background-color: #2980b9;
+        }
+
+        .page-item a:hover {
+            background-color: #2980b9;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #121213;
+            color: #FF0099;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 20px;
+            box-shadow: 0 -4px 6px rgba(175, 10, 10, 0.1);
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            table th, table td {
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Danh sách ủng hộ đội bóng</h1>
-    <p class="loading">Đang tải dữ liệu...</p>
-    <ul id="dataList"></ul>
-  </div>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <!-- Nút "Trang chủ" -->
+            <button class="home-button" onclick="window.location.href='index.html'">Trang chủ</button>
+            <h1>Danh sách ủng hộ trần nhà thờ</h1>
+        </div>
+    </header>
 
-  <script>
-    // URL của Google Apps Script mà bạn đã nhận được
-    const url = "https://script.google.com/macros/s/AKfycbwDw0UWEPvdNPmNIIfDzB-vo_Mh0PZ0fOMO2X8kOhLQ5TJhRzTm_uTN5WD2NvqfkYWJ1g/exec";
+    <!-- Container -->
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Họ và tên</th>
+                    <th>Giáo họ</th>
+                    <th>Số tiền ủng hộ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dữ liệu sẽ được thêm vào đây -->
+            </tbody>
+        </table>
 
-    // Lấy dữ liệu từ Google Apps Script
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        const dataList = document.getElementById("dataList");
-        const loadingMessage = document.querySelector(".loading");
+        <!-- Phân trang -->
+        <div class="pagination-container">
+            <ul class="pagination">
+                <!-- Các trang sẽ được thêm vào đây -->
+            </ul>
+        </div>
+    </div>
 
-        // Ẩn thông báo loading khi dữ liệu đã tải
-        loadingMessage.style.display = "none";
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Danh sách ủng hộ</a>. Thiết kế bởi <a href="https://www.facebook.com/cuonggatsby1994/" target="_blank">Cường GatsBy</a>.</p>
+    </footer>
 
-        // Lặp qua mỗi dòng dữ liệu và hiển thị nó lên trang web
-        data.forEach(row => {
-          const listItem = document.createElement("li");
+    <script>
+        const rowsPerPage = 15;
+        let currentPage = 1;
+        let data = [
+            {stt: 1, name: "Nguyễn Văn A", church: "Giáo họ A", amount: "1,000,000 VND"},
+            {stt: 2, name: "Trần Thị B", church: "Giáo họ B", amount: "500,000 VND"},
+            {stt: 3, name: "Lê Văn C", church: "Giáo họ C", amount: "750,000 VND"},
+            {stt: 4, name: "Phạm Thị D", church: "Giáo họ D", amount: "1,200,000 VND"},
+            {stt: 5, name: "Hoàng Văn E", church: "Giáo họ E", amount: "900,000 VND"},
+            {stt: 6, name: "Vũ Thị F", church: "Giáo họ F", amount: "600,000 VND"},
+            {stt: 7, name: "Đặng Văn G", church: "Giáo họ G", amount: "1,100,000 VND"},
+            {stt: 8, name: "Bùi Thị H", church: "Giáo họ H", amount: "800,000 VND"},
+            {stt: 9, name: "Đỗ Văn I", church: "Giáo họ I", amount: "1,300,000 VND"},
+            {stt: 10, name: "Mai Thị K", church: "Giáo họ K", amount: "700,000 VND"},
+            {stt: 11, name: "Lý Văn L", church: "Giáo họ L", amount: "1,000,000 VND"},
+            {stt: 12, name: "Chu Thị M", church: "Giáo họ M", amount: "1,500,000 VND"},
+            {stt: 13, name: "Phan Văn N", church: "Giáo họ N", amount: "850,000 VND"},
+            {stt: 14, name: "Trịnh Thị O", church: "Giáo họ O", amount: "950,000 VND"},
+            {stt: 15, name: "Ngô Văn P", church: "Giáo họ P", amount: "1,250,000 VND"},
+            {stt: 16, name: "Ngô Văn t", church: "Giáo họ P", amount: "1,250,000 VND"},
+            // Dữ liệu tiếp theo...
+        ];
 
-          // Lấy dữ liệu từ các cột trong mỗi dòng
-          listItem.textContent = row.join(", ");  // Dữ liệu từ các cột sẽ được nối bằng dấu phẩy
-          
-          // Thêm phần tử li vào danh sách
-          dataList.appendChild(listItem);
-        });
-      })
-      .catch(error => {
-        const loadingMessage = document.querySelector(".loading");
-        loadingMessage.textContent = "Lỗi khi tải dữ liệu!";
-        console.error("Lỗi khi tải dữ liệu:", error);
-      });
-  </script>
+        // Hàm hiển thị bảng và cập nhật STT
+        function displayTable(page) {
+            const startIndex = (page - 1) * rowsPerPage;
+            const endIndex = startIndex + rowsPerPage;
+            const pageData = data.slice(startIndex, endIndex);
+
+            const tableBody = document.querySelector('table tbody');
+            tableBody.innerHTML = ''; // Xóa dữ liệu cũ trong bảng
+
+            pageData.forEach((donation, index) => {
+                const row = document.createElement('tr');
+                const stt = startIndex + index + 1;  // STT bắt đầu từ 1 trên mỗi trang
+
+                row.innerHTML = ` 
+                    <td>${stt}</td>
+                    <td>${donation.name}</td>
+                    <td>${donation.church}</td>
+                    <td>${donation.amount}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Hàm thiết lập phân trang
+        function setupPagination() {
+            const totalPages = Math.ceil(data.length / rowsPerPage);
+            const paginationContainer = document.querySelector('.pagination');
+            paginationContainer.innerHTML = ''; // Xóa phân trang cũ
+
+            // Tạo nút phân trang
+            for (let i = 1; i <= totalPages; i++) {
+                const pageLink = document.createElement('a');
+                pageLink.href = '#';
+                pageLink.classList.add('page-link');
+                pageLink.textContent = i;
+                pageLink.addEventListener('click', () => {
+                    currentPage = i;
+                    displayTable(currentPage);
+                    setupPagination();
+                });
+
+                const pageItem = document.createElement('li');
+                pageItem.classList.add('page-item');
+                if (i === currentPage) {
+                    pageItem.classList.add('active');
+                }
+                pageItem.appendChild(pageLink);
+                paginationContainer.appendChild(pageItem);
+            }
+        }
+
+        // Khi trang tải, hiển thị dữ liệu trang 1
+        displayTable(currentPage);
+        setupPagination();
+    </script>
 </body>
 </html>
