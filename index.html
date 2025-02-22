@@ -1,8 +1,8 @@
 <!-- 
-  @Author: Cường GatsBy
-  @Date:   2024-11-03 00:37:12
+  @Author: Your name
+  @Date:   2025-02-23 00:57:08
   @Last Modified by:   Your name
-  @Last Modified time: 2025-02-06 19:08:23
+  @Last Modified time: 2025-02-23 01:59:14
 -->
 <!DOCTYPE html>
 <html lang="vi">
@@ -11,233 +11,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="w1NH3M5PiBfskkvCzulARP0eFddvgKkWJs3E1GHuB2c" />
     <meta name="msvalidate.01" content="CACCA3CDB162ADDD475C6F85AEAFF2A6" />
-    <meta name="msvalidate.01" content="CACCA3CDB162ADDD475C6F85AEAFF2A6" />
-    <title>Giáo Họ Trung Đồng - Trang thông tin chính thức </title>
-    <meta name="description" content="Giáo Họ Trung Đồng - Nhà Thờ Giáo Họ Trung Đồng - Giáo Xứ Lạc Thành - Giáo Phận Bùi Chu">
-    <meta name="keywords" content="Giáo họ Trung Đồng, Tin tức, Công giáo, Nhà thờ, Lịch phụng vụ">
-    <meta name="description" content="Giáo Họ Trung Đồng - Nhà Thờ Giáo Họ Trung Đồng - Xóm 4 Xuân Phú Xuân Trường Nam Định">
-    <meta name="keywords" content="Giáo họ Trung Đồng, Tin tức, Công giáo, Nhà thờ, Lịch phụng vụ">
-    <meta name="description" content="giaohotrungdong nhathogiaohotrungdong giaoxulacthanh giaophanbuichu">
+    <title>Giáo Họ Trung Đồng</title>
+    <meta name="description" content="Nhà Thờ Giáo Họ Trung Đồng - Giáo Xứ Lạc Thành - Giáo Phận Bùi Chu">
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="favicon-16x16" href="/favicon-16x16.png">
-    
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8MXG2YVYK"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-Y8MXG2YVYK');
-    </script>
-    <!-- End Google Analytics -->
-    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Custom CSS */
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/6102365/pexels-photo-6102365.jpeg') center/cover no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            color: white;
-        }
-
-        .navbar-brand { font-weight: bold; }
-        
-        .hero {
-            padding: 100px 0;
-            text-align: center;
-            position: relative;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/6102365/pexels-photo-6102365.jpeg') center/cover no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-        }
-        
-        .hero h1 {
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-        }
-
-        .btn {
-            background-color: #ff7e5f;
-            border: none;
-        }
-
-        .section {
-            padding: 50px 0;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/6102365/pexels-photo-6102365.jpeg') center/cover no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-        }
-
-        .bg-light {
-            background-color: #f9f9f9 !important;
-        }
-
-        .service-box {
-            padding: 30px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            transition: transform 0.3s;
-        }
-
-        .service-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 20px 0;
-        }
-
-        /* Button Hover Effect */
-        .btn-hover {
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        /* Image Slider CSS */
-        .image-slider {
-            position: relative;
-            overflow: hidden;
-            height: 600px;
-        }
-
-        .slide-div {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-
-        .slide-div img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .active {
-            opacity: 1;
-        }
-    </style>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.min.css"> <!-- File CSS đã được minify -->
 </head>
 <body>
     <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="index.html">Giáo Họ Trung Đồng</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="#about">Giới Thiệu</a></li>
-            <li class="nav-item"><a class="nav-link" href="#services">Hoạt Động</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contact">Liên Hệ</a></li>
-        </ul>
-        <!-- Mạng xã hội -->
-        <ul class="navbar-nav social-icons">
-            <li class="nav-item">
-                <a class="nav-link" href="https://www.facebook.com/GHtrungdong" target="_blank" title="Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-            <li class="nav-item">    
-                <a class="nav-link" href="sitemap.xml" target="_blank" title="Sitemap">
-                    <i class="fas fa-sitemap"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="https://www.youtube.com/@nhothogiaohotrungong7117" target="_blank" title="YouTube">
-                    <i class="fab fa-youtube"></i>
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="index.html">Giáo Họ Trung Đồng</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#about">Giới Thiệu</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">Hoạt Động</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Liên Hệ</a></li>
+            </ul>
+            <!-- Mạng xã hội -->
+            <ul class="navbar-nav social-icons">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.facebook.com/GHtrungdong" target="_blank" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="sitemap.xml" target="_blank" title="Sitemap">
+                        <i class="fas fa-sitemap"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.youtube.com/@nhothogiaohotrungong7117" target="_blank" title="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-    <!-- Hero Section with Parallax Effect -->
+    <!-- Hero Section -->
     <header class="hero">
-        <h1>Chào Mừng Đến Giáo Họ Trung Đồng</h1>
-        <p>Vinh danh Thiên Chúa trên các tầng trời và bình an dưới thế cho người thiện tâm</p>
-        <a href="kinhnguyen/kinh-nguyen.html" class="btn btn-primary btn-lg">Kinh Nguyện</a>
+        <h1 data-aos="fade-up">Chào Mừng Đến Giáo Họ Trung Đồng</h1>
+        <p data-aos="fade-up" data-aos-delay="300">Vinh danh Thiên Chúa trên các tầng trời và bình an dưới thế cho người thiện tâm</p>
+        <a href="kinhnguyen/kinh-nguyen.html" class="btn btn-primary btn-lg" data-aos="fade-up" data-aos-delay="600">Kinh Nguyện</a>
     </header>
 
     <!-- About Section -->
     <section id="about" class="section text-center">
         <div class="container">
-            <h2>Giới Thiệu</h2>
-            <p>Nhà thờ Giáo họ Trung Đồng mang nét đẹp giản dị nhưng trang nghiêm, nằm giữa cánh đồng xanh mướt của vùng quê Nam Định</p>
-            <p> Đây là nơi mà các tín hữu cùng nhau cầu nguyện, tham gia hoạt động tôn giáo và gìn giữ những giá trị văn hóa, truyền thống của giáo họ qua nhiều thế hệ</p>
+            <h2 data-aos="fade-up">Giới Thiệu</h2>
+            <p data-aos="fade-up" data-aos-delay="300">Nhà thờ Giáo họ Trung Đồng mang nét đẹp giản dị nhưng trang nghiêm, nằm giữa cánh đồng xanh mướt của vùng quê Nam Định.</p>
+            <p data-aos="fade-up" data-aos-delay="600">Đây là nơi mà các tín hữu cùng nhau cầu nguyện, tham gia hoạt động tôn giáo và gìn giữ những giá trị văn hóa, truyền thống của giáo họ qua nhiều thế hệ.</p>
         </div>
     </section>
 
     <!-- Image Slider Section -->
     <section class="section">
         <div class="container">
-            <h2 class="text-center">Hình Ảnh Hoạt Động</h2>
-            <div class="image-slider">
-                <div class="slide-div active">
-                    <img src="images/1.jpg" alt="image1">
+            <h2 class="text-center" data-aos="fade-up">Hình Ảnh Hoạt Động</h2>
+            <div class="swiper-container" data-aos="fade-up">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <img src="images/1.webp" alt="image1" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <img src="images/2.webp" alt="image2" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <img src="images/3.webp" alt="image3" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <img src="images/5.webp" alt="image4" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <img src="images/4.webp" alt="image5" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <img src="images/6.webp" alt="image6" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <img src="images/7.webp" alt="image7" loading="lazy">
+                        </div>
+                    </div>    
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <img src="images/9.jpg" alt="image9">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="slide-content">
+                            <img src="images/8.jpg" alt="image8">
+                        </div>
+                    </div>
                 </div>
-                <div class="slide-div">
-                    <img src="images/2.jpg" alt="image2">
-                </div>
-                <div class="slide-div">
-                    <img src="images/9.jpg" alt="image3">
-                </div>
-                <div class="slide-div">
-                    <img src="images/4.jpg" alt="image4">
-                </div>
-                <div class="slide-div">
-                    <img src="images/6.jpg" alt="image5">
-                </div>
-                <div class="slide-div">
-                    <img src="images/7.jpg" alt="image6">
-                </div>
-                <div class="slide-div">
-                    <img src="images/8.jpg" alt="image7">
-                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+                <!-- Add Navigation -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section with Font Awesome Icons -->
+    <!-- Services Section -->
     <section id="services" class="section">
         <div class="container">
-            <h2 class="text-center">Hoạt Động</h2>
+            <h2 class="text-center" data-aos="fade-up">Hoạt Động</h2>
             <div class="row text-center">
-                <div class="col-md-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-box">
                         <i class="fas fa-church fa-3x mb-3"></i>
                         <h4>Thánh Lễ</h4>
                         <p>Các buổi thánh lễ hàng tuần để kết nối và cầu nguyện cùng nhau.</p>
                         <ul>
                             <li><a href="loichuahangngay.html">Lời Chúa hàng ngày</a></li>
-                            <li><a href="thanhle.html">Thánh Lễ </a></li>
+                            <li><a href="thanhle.html">Thánh Lễ</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
                     <div class="service-box">
                         <i class="fas fa-hands-helping fa-3x mb-3"></i>
                         <h4>Các Chương Trình</h4>
@@ -248,7 +166,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="900">
                     <div class="service-box">
                         <i class="fas fa-book-open fa-3x mb-3"></i>
                         <h4>Các Lớp Học Giáo Lý</h4>
@@ -266,39 +184,25 @@
     <!-- Contact Section -->
     <section id="contact" class="section bg-light text-center">
         <div class="container">
-            <h2>Liên Hệ</h2>
-            <p>Địa chỉ: Xóm 4 Xuân Phú - Xuân Trường - Nam Định<br>Email: nhathogiaohotrungdong@gmail.com</p>
+            <h2 data-aos="fade-up">Liên Hệ</h2>
+            <p data-aos="fade-up" data-aos-delay="300">Địa chỉ: Xóm 4 Xuân Phú - Xuân Trường - Nam Định<br>Email: nhathogiaohotrungdong@gmail.com</p>
         </div>
     </section>
-    <li class="nav-item">    
-        <a class="nav-link" href="BingSiteAuth.xml" target="_blank" title="Sitemap">
-            <i class="fas fa-sitemap"></i>
-        </a>
-    </li>
+
     <!-- Footer -->
     <footer class="text-center">
-        <p>&copy; 2024 Giáo Họ Trung Đồng</a>. Thiết kế bởi <a href="https://www.facebook.com/cuonggatsby1994/" target="_blank">Cường GatsBy</a>.</p>
+        <p>&copy; 2024 Giáo Họ Trung Đồng. All Rights Reserved.</p>
     </footer>
-
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- Slider JS -->
-    <script>
-        let slides = document.querySelectorAll('.slide-div');
-        let currentSlide = 0;
-
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[index].classList.add('active');
-        }
-        setInterval(function() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }, 3000); // Change slide every 3 seconds
-    </script>
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script src="scripts.min.js"></script> <!-- File JS đã được minify -->
 </body>
 </html>
