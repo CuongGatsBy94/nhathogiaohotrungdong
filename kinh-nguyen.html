@@ -1,0 +1,241 @@
+<!-- 
+  @Author: Your name
+  @Date:   2024-11-19 22:48:46
+  @Last Modified by:   Your name
+  @Last Modified time: 2025-02-24 18:18:31
+-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="w1NH3M5PiBfskkvCzulARP0eFddvgKkWJs3E1GHuB2c" />
+    <meta name="msvalidate.01" content="CACCA3CDB162ADDD475C6F85AEAFF2A6" />
+    <title>Kinh Nguyện</title>
+    <meta name="description" content="Danh sách các kinh nguyện Công Giáo">
+    <link rel="icon" type="image/png" sizes="favicon-16x16" href="/favicon-16x16.png">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y8MXG2YVYK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Y8MXG2YVYK');
+    </script>
+    <!-- End Google Analytics -->
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom CSS */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/6102365/pexels-photo-6102365.jpeg') center/cover no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        .navbar-brand { font-weight: bold; }
+        
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/6102365/pexels-photo-6102365.jpeg') center/cover no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        .btn {
+            background-color: #ff7e5f;
+            border: none;
+        }
+
+        .section {
+            padding: 50px 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/6102365/pexels-photo-6102365.jpeg') center/cover no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .bg-light {
+            background-color: #f9f9f9 !important;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+        }
+
+        /* Thêm lớp này vào đoạn style hiện tại */
+        .service-box {
+            border: 2px solid #fff; /* Khung viền màu trắng */
+            border-radius: 10px; /* Bo tròn các góc */
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: rgba(255, 255, 255, 0.1); /* Làm mờ nền */
+        }
+
+        .service-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-box h4 {
+            margin-bottom: 15px;
+            color: #ff7e5f;
+        }
+
+        .service-box p {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="../index.html">Giáo Họ Trung Đồng</a> <!-- Liên kết về index.html -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="../index.html">Trang Chủ</a> <!-- Liên kết về index.html -->
+            </li>
+        </ul>
+        <!-- Mạng xã hội -->
+        <ul class="navbar-nav social-icons">
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.facebook.com/GHtrungdong" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.youtube.com/@nhothogiaohotrungong7117" target="_blank" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <!-- Kinh Nguyện Section -->
+    <section id="kinh-nguyen" class="section">
+        <div class="container">
+            <h2 class="text-center">Danh Sách Kinh Nguyện</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="service-box">
+                        <h4>Kinh Lạy Cha</h4>
+                        <p><em>Lạy Cha chúng con ở trên trời...</em></p>
+                        <a href="1kinh-lay-cha.html" class="btn btn-hover">Đọc Kinh</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-box">
+                        <h4>Kinh Kính Mừng</h4>
+                        <p><em>Kính mừng Maria đầy ơn phúc...</em></p>
+                        <a href="2kinh-kinh-mung.html" class="btn btn-hover">Đọc Kinh</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-box">
+                        <h4>Kinh Tin Kính</h4>
+                        <p><em>Tôi tin kính một Thiên Chúa...</em></p>
+                        <a href="3kinh-sang-danh.html" class="btn btn-hover">Đọc Kinh</a>
+                    </div>
+                    
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-box">
+                        <h4>Lạy Chúa Thánh Thần</h4>
+                        <p><em>Lạy Chúa Thánh Thần, xin Ngài ngự đến...</em></p>
+                        <a href="4kinh-lay-chua-thanh-than.html" class="btn btn-hover">Đọc Kinh</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-box">
+                        <h4>Kinh Tin Kính </h4>
+                        <p><em>Tôi tin kính Đức Chúa Trời là Cha ...</em></p>
+                        <a href="5kinh-tin-kinh.html" class="btn btn-hover">Đọc Kinh</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-box">
+                        <h4>Kinh Thiên Thần Bản Mệnh</h4>
+                        <p><em>Thiên Thần của Chúa là Thiên Thần...</em></p>
+                        <a href="6kinh-thien-than-ban-menh.html" class="btn btn-hover">Đọc Kinh</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-box">
+                        <h4>Nghỉ yên muôn đời</h4>
+                        <p><em>Lạy Chúa,xin cho các linh hồn...</em></p>
+                        <a href="7kinh-nghi-yen.html" class="btn btn-hover">Đọc Kinh</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-box">
+                        <h4>Kinh Lạy LinhHồn ChúaKitô</h4>
+                        <p><em>Lạy linh hồn Chúa Kitô...</em></p>
+                        <a href="8kinh-lay-linh-hon-chua-kito.html" class="btn btn-hover">Đọc Kinh</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-box">
+                        <h4>Kinh Tin - Cậy - Mến</h4>
+                        <p><em>Lạy Chúa,con tin thật có một Đức ...</em></p>
+                        <a href="9kinh-tin-cay-men.html" class="btn btn-hover">Đọc Kinh</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-box">
+                        <h4>Kinh Ăn Năn Tội</h4>
+                        <p><em>Lạy Chúa con, Chúa là Đấng trọn tốt...</em></p>
+                        <a href="10kinh-an-nan-toi.html" class="btn btn-hover">Đọc Kinh</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-box">
+                        <h4>Xin ngự đến</h4>
+                        <p><em>Xin ngự đến, lạy Thánh Thần...</em></p>
+                        <a href="11kinh-xin-ngu-den.html" class="btn btn-hover">Đọc Kinh</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="service-box">
+                        <h4>Kinh Hãy Nhớ</h4>
+                        <p><em>Lạy Thánh Nữ Đồng Trinh Maria...</em></p>
+                        <a href="12kinh-hay-nho.html" class="btn btn-hover">Đọc Kinh</a>
+                    </div> 
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <p>&copy; 2024 Giáo Họ Trung Đồng. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
